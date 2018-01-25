@@ -20,7 +20,7 @@ export default class MainLayout extends Component {
                     <Menu theme="light" mode="inline" defaultSelectedKeys={['4']}>
                         <Menu.Item key="1">
                             <Icon type="code-o" style={{ fontSize: 20 }} />
-                            <span className="nav-text">编码</span>
+                            <span className="nav-text">转码</span>
                         </Menu.Item>
                         <Menu.Item key="2">
                             <Icon type="video-camera" style={{ fontSize: 20 }} />
