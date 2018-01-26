@@ -39,13 +39,13 @@ export default class MainLayout extends Component {
                 <Layout>
                     {/* <Header style={{ background: '#fff', padding: 0 }} /> */}
                     <Content style={{ margin: '24px 16px 0' }}>
-                        <div style={{ padding: 24, background: '#fff' }}>
-                            content
-        </div>
+                        <div style={{ padding: '12px 24px 24px 24px', background: '#fff', minHeight: 430 }}>
+                            {this.props.children}
+                        </div>
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>
+                    {/* <Footer style={{ textAlign: 'center' }}>
                         Ant Design ©2016 Created by Ant UED
-      </Footer>
+      </Footer> */}
                 </Layout>
             </Layout>
         )
