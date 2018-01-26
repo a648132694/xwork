@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tabs, Button, Icon, Card, Divider } from 'antd';
+import { Tabs, Card } from 'antd';
 import { withRouter } from "react-router-dom";
 
 import MainLayout from "../components/Layouts/Layout";
@@ -9,7 +9,7 @@ const TabPane = Tabs.TabPane;
 
 class Encryptions extends Component {
     componentWillMount() {
-        this.props.history.push("/");
+        // this.props.history.push("/");
     }
 
     render() {

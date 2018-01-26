@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, Button, Divider, Alert } from 'antd';
+import { Input, Button, Alert } from 'antd';
 
 const { TextArea } = Input;
 

@@ -1,11 +1,44 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
+import { Link, withRouter } from "react-router-dom";
 import './Layout.css';
 import logo from './logo.png';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Sider } = Layout;
 
-export default class MainLayout extends Component {
+class MainLayout extends Component {
+
+    // constructor(){
+
+    // }
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            selectedKeys: ['index'],
+        };
+    }
+
+    componentWillMount() {
+        this.setSelectItem()
+    }
+
+
+    setSelectItem() {
+        const pathName = this.props.location.pathname.split('/');
+        let key;
+        key = (pathName[1] === '' ? 'index' : pathName[1]);
+        this.setState({
+            selectedKeys: [key]
+        });
+    }
+
+    handleSelect(item) {
+        this.setState({
+            selectedKeys: [item.key],
+        });
+    }
+
+
     render() {
         return (
             <Layout style={{ height: 480, fontSize: 14 }}>
@@ -16,23 +49,29 @@ export default class MainLayout extends Component {
                     collapsedWidth="0"
                     onCollapse={(collapsed, type) => { console.log(collapsed, type); }}
                 >
-                    <img src={logo} className="logo" />
-                    <Menu theme="light" mode="inline" defaultSelectedKeys={['4']}>
-                        <Menu.Item key="1">
+                    <img src={logo} className="logo" alt="logo" />
+                    <Menu theme="light" mode="inline" defaultSelectedKeys={this.state.selectedKeys}
+                        selectedKeys={this.state.selectedKeys} onClick={this.handleSelect.bind(this)}>
+
+                        <Menu.Item key="index">
                             <Icon type="code-o" style={{ fontSize: 20 }} />
-                            <span className="nav-text">转码</span>
+                            <span className="nav-text">主页</span>
+                            <Link to='/' />
                         </Menu.Item>
-                        <Menu.Item key="2">
+                        <Menu.Item key="formatting">
                             <Icon type="video-camera" style={{ fontSize: 20 }} />
                             <span className="nav-text">格式化</span>
+                            <Link to='/formatting/' />
                         </Menu.Item>
-                        <Menu.Item key="3">
+                        <Menu.Item key="encryptions">
                             <Icon type="upload" style={{ fontSize: 20 }} />
-                            <span className="nav-text">转换</span>
+                            <span className="nav-text">加密</span>
+                            <Link to='/encryptions/' />
                         </Menu.Item>
-                        <Menu.Item key="4">
+                        <Menu.Item key="text_progressing">
                             <Icon type="user" style={{ fontSize: 20 }} />
                             <span className="nav-text">文字处理</span>
+                            <Link to='/text_progressing' />
                         </Menu.Item>
                     </Menu>
                 </Sider>
@@ -51,3 +90,5 @@ export default class MainLayout extends Component {
         )
     }
 }
+
+export default withRouter(MainLayout)

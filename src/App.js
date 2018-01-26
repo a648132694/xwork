@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import MainLayout from '../src/components/Layouts/Layout';
 import Encryptions from "./containers/Encryptions";
+import Formatting from "./containers/Formatting";
+import TextProgressing from "./containers/TextProgressing";
+import Index from "./containers/Index";
 import {
   HashRouter as Router,
   Route,
-  Switch,
-  Link
 } from 'react-router-dom';
 
 class App extends Component {
@@ -18,9 +17,10 @@ class App extends Component {
       // </div>
       <Router>
         <div>
-          <Route exact path="/" component={Encryptions} />
+          <Route exact path="/" component={Index} />
           <Route exact path="/encryptions/" component={Encryptions} />
-          <Route exact path="/topics/" component={MainLayout} />
+          <Route exact path="/formatting/" component={Formatting} />
+          <Route exact path="/text_progressing/" component={TextProgressing} />
         </div>
       </Router>
     );
