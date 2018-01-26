@@ -23,10 +23,10 @@ class Encryption extends Component {
             style={{ width: '100%' }}
           >
             <Tabs tabPosition="left">
-              <TabPane tab="MD5" key="1"><MD5 /></TabPane>
-              <TabPane tab="SHA1" key="2">Content of tab 2</TabPane>
-              <TabPane tab="XIAN" key="3">Content of tab 3</TabPane>
-              <TabPane tab="AES" key="4">Content of tab 4</TabPane>
+              <TabPane tab="MD5" forceRender={true} key="1"><MD5 /></TabPane>
+              <TabPane tab="SHA1" forceRender={true} key="2">Content of tab 2</TabPane>
+              <TabPane tab="XIAN" forceRender={true} key="3">Content of tab 3</TabPane>
+              <TabPane tab="AES" forceRender={true} key="4">Content of tab 4</TabPane>
             </Tabs>
           </Card>
         </MainLayout>

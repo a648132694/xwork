@@ -14,9 +14,13 @@ export default class MD5 extends Component {
     };
   }
 
+  componentDidMount() {
+    this.textArea.focus();
+  }
+
   MD5Handle() {
     this.setState({
-      encryptionResult: utils.md5(this.state.textAreaValue)
+      encryptionResult: utils.md5(this.state.textAreaValue),
     });
   }
 
@@ -29,12 +33,23 @@ export default class MD5 extends Component {
   render() {
     return (
       <div>
-        <TextArea rows={4} onChange={this.handleTextAreaValueChange.bind(this)} />
+        <TextArea
+          rows={4}
+          ref={(textArea) => { this.textArea = textArea; }}
+          onChange={this.handleTextAreaValueChange.bind(this)}
+        />
         <div style={{ padding: '15px 0 15px 0' }}>
-          <Button type="primary" icon="user" size="default" onClick={this.MD5Handle.bind(this)}>加密</Button>
+          <Button
+            type="primary"
+            icon="user"
+            size="default"
+            onClick={this.MD5Handle.bind(this)}
+          >
+            加密
+          </Button>
         </div>
-        <Alert message={this.state.encryptionResult} type="success" />
+        <Alert message={this.state.encryptionResult} type="success"/>
       </div >
-    )
+    );
   }
 }
