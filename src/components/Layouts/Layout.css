@@ -5,3 +5,15 @@
     margin: 16px;
     margin-left: 20px;
 }
+
+.content {
+    padding: 12px 24px 24px 24px;
+    background: #fff; 
+    min-height: 430;
+    margin: 24px 16px 0;
+}
+
+.layout {
+    height: 480px;
+    font-size: 14px;
+}

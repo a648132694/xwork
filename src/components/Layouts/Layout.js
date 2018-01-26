@@ -8,9 +8,6 @@ const { Content, Sider } = Layout;
 
 class MainLayout extends Component {
 
-    // constructor(){
-
-    // }
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -41,7 +38,7 @@ class MainLayout extends Component {
 
     render() {
         return (
-            <Layout style={{ height: 480, fontSize: 14 }}>
+            <Layout className='layout'>
                 <Sider
                     style={{ background: '#fff' }}
                     breakpoint="sm"
@@ -55,36 +52,30 @@ class MainLayout extends Component {
 
                         <Menu.Item key="index">
                             <Icon type="code-o" style={{ fontSize: 20 }} />
-                            <span className="nav-text">主页</span>
+                            <span className="nav-text"><b>主页</b></span>
                             <Link to='/' />
                         </Menu.Item>
                         <Menu.Item key="formatting">
                             <Icon type="video-camera" style={{ fontSize: 20 }} />
-                            <span className="nav-text">格式化</span>
+                            <span className="nav-text"><b>格式化</b></span>
                             <Link to='/formatting/' />
                         </Menu.Item>
                         <Menu.Item key="encryptions">
                             <Icon type="upload" style={{ fontSize: 20 }} />
-                            <span className="nav-text">加密</span>
+                            <span className="nav-text"><b>加密</b></span>
                             <Link to='/encryptions/' />
                         </Menu.Item>
                         <Menu.Item key="text_progressing">
                             <Icon type="user" style={{ fontSize: 20 }} />
-                            <span className="nav-text">文字处理</span>
+                            <span className="nav-text"><b>文字处理</b></span>
                             <Link to='/text_progressing' />
                         </Menu.Item>
                     </Menu>
                 </Sider>
                 <Layout>
-                    {/* <Header style={{ background: '#fff', padding: 0 }} /> */}
-                    <Content style={{ margin: '24px 16px 0' }}>
-                        <div style={{ padding: '12px 24px 24px 24px', background: '#fff', minHeight: 430 }}>
-                            {this.props.children}
-                        </div>
+                    <Content className='content'>
+                        {this.props.children}
                     </Content>
-                    {/* <Footer style={{ textAlign: 'center' }}>
-                        Ant Design ©2016 Created by Ant UED
-      </Footer> */}
                 </Layout>
             </Layout>
         )

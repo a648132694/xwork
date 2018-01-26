@@ -3,7 +3,7 @@ import { Tabs, Card } from 'antd';
 import { withRouter } from "react-router-dom";
 
 import MainLayout from "../components/Layouts/Layout";
-import MD5 from "../components/Encryptions/MD5";
+import MD5 from "./Encryptions/MD5";
 
 const TabPane = Tabs.TabPane;
 
