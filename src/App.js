@@ -4,9 +4,9 @@ import {
   Route,
 } from 'react-router-dom';
 import './App.css';
-import Encryption from './containers/Encryption';
-import Formatting from './containers/Formatting';
-import TextProgressing from './containers/TextProgressing';
+import EncryptionContainer from './containers/Encryption/Encryption';
+import FormattingContainer from './containers/Formatting/Formatting';
+import TextProgressing from './containers/TextProgressing/TextProgressing';
 import Index from './containers/Index';
 
 
@@ -16,8 +16,8 @@ class App extends Component {
       <Router>
         <div>
           <Route exact path="/" component={Index} />
-          <Route exact path="/encryption/" component={Encryption} />
-          <Route exact path="/formatting/" component={Formatting} />
+          <Route exact path="/encryption/" component={EncryptionContainer} />
+          <Route exact path="/formatting/" component={FormattingContainer} />
           <Route exact path="/text_progressing/" component={TextProgressing} />
         </div>
       </Router>
