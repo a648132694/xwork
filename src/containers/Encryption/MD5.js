@@ -1,39 +1,28 @@
 import React, { Component } from 'react';
 import { Input, Button, Alert } from 'antd';
 import utils from 'utility';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as encryptionActions from '../../actions/encryption';
 
 const { TextArea } = Input;
 
-export default class MD5 extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      textAreaValue: '',
-      encryptionResult: '暂无结果',
-    };
-  }
-
-  componentDidMount() {
-    this.textArea.focus();
-  }
+class MD5 extends Component {
 
   MD5Handle() {
-    this.setState({
-      encryptionResult: utils.md5(this.state.textAreaValue),
-    });
+    const result = utils.md5(this.props.MD5Input);
+    this.props.actions.handleSaveMD5Result(result);
   }
 
   handleTextAreaValueChange(e) {
-    this.setState({
-      textAreaValue: e.target.value,
-    });
+    this.props.actions.handleSaveMD5Input(e.target.value);
   }
 
   render() {
     return (
       <div>
         <TextArea
+          value={this.props.MD5Input}
           rows={4}
           ref={(textArea) => { this.textArea = textArea; }}
           onChange={this.handleTextAreaValueChange.bind(this)}
@@ -48,8 +37,24 @@ export default class MD5 extends Component {
             加密
           </Button>
         </div>
-        <Alert message={this.state.encryptionResult} type="success"/>
+        <Alert message={this.props.MD5Result} type="success" />
       </div >
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    MD5Input: state.encryption.MD5.input,
+    MD5Result: state.encryption.MD5.result,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(encryptionActions, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MD5);
+

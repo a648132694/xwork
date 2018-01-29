@@ -2,7 +2,7 @@ export default {
   encryption: {
     MD5: {
       input: '',
-      result: '',
+      result: 'not result.',
     },
     SHA: {
       type: 'SHA1',
