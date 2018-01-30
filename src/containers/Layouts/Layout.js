@@ -19,7 +19,10 @@ class LayoutContainer extends Component {
   setSelectItem() {
     const key = this.props.menuSelectKeys;
     let path = `/${key}/`;
-    if (this.props.menuSelectKeys[0] === '/') { path = '/'; }
+    if (this.props.menuSelectKeys[0] === '/'
+      || this.props.menuSelectKeys.length === 0) {
+      path = '/';
+    }
     this.props.history.push(path);
   }
 

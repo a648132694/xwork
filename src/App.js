@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// 注意:开发谷歌扩展要用HashRouter
 import {
   HashRouter as Router,
   Route,
