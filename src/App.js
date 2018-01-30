@@ -7,7 +7,7 @@ import './App.css';
 import EncryptionContainer from './containers/Encryption/Encryption';
 import FormattingContainer from './containers/Formatting/Formatting';
 import TextProgressing from './containers/TextProgressing/TextProgressing';
-import Index from './containers/Index';
+import Index from './containers/Index/Index';
 
 
 class App extends Component {

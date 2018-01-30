@@ -10,4 +10,7 @@ export default {
       result: '',
     },
   },
+  layout: {
+    menuSelectKeys: [],
+  },
 };

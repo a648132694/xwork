@@ -44,7 +44,7 @@ class MainLayout extends Component {
             console.log(collapsed, type);
           }}
         >
-          <img src={logo} className="logo" alt="logo"/>
+          <img src={logo} className="logo" alt="logo" />
           <Menu
             theme="light"
             mode="inline"
@@ -54,24 +54,24 @@ class MainLayout extends Component {
           >
 
             <Menu.Item key="index">
-              <Icon type="code-o" style={{ fontSize: 20 }}/>
+              <Icon type="code-o" style={{ fontSize: 20 }} />
               <span className="nav-text"><b>主页</b></span>
-              <Link to="/"/>
+              <Link to="/" />
             </Menu.Item>
             <Menu.Item key="formatting">
-              <Icon type="video-camera" style={{ fontSize: 20 }}/>
+              <Icon type="video-camera" style={{ fontSize: 20 }} />
               <span className="nav-text"><b>格式化</b></span>
-              <Link to="/formatting/"/>
+              <Link to="/formatting/" />
             </Menu.Item>
             <Menu.Item key="encryption">
-              <Icon type="upload" style={{ fontSize: 20 }}/>
+              <Icon type="upload" style={{ fontSize: 20 }} />
               <span className="nav-text"><b>加密</b></span>
-              <Link to="/encryption/"/>
+              <Link to="/encryption/" />
             </Menu.Item>
             <Menu.Item key="text_progressing">
-              <Icon type="user" style={{ fontSize: 20 }}/>
+              <Icon type="user" style={{ fontSize: 20 }} />
               <span className="nav-text"><b>文字处理</b></span>
-              <Link to="/text_progressing"/>
+              <Link to="/text_progressing" />
             </Menu.Item>
           </Menu>
         </Sider>

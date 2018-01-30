@@ -1,36 +1,30 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import * as layoutActions from '../../actions/layout';
 import './Layout.css';
 import logo from './logo.png';
 
 const { Content, Sider } = Layout;
 
 class LayoutContainer extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      selectedKeys: ['index'],
-    };
-  }
-
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     this.setSelectItem();
   }
 
+  // 注意:由于谷歌拓展是没有url的,所以判断都是无法进行的
   setSelectItem() {
-    const pathName = this.props.location.pathname.split('/');
-    const key = (pathName[1] === '' ? 'index' : pathName[1]);
-    this.setState({
-      selectedKeys: [key],
-    });
+    const key = this.props.menuSelectKeys;
+    let path = `/${key}/`;
+    if (this.props.menuSelectKeys[0] === '/') { path = '/'; }
+    this.props.history.push(path);
   }
 
   handleSelect(item) {
-    this.setState({
-      selectedKeys: [item.key],
-    });
+    this.props.actions.handleSaveMenuSelectKeys([item.key]);
   }
 
   render() {
@@ -41,34 +35,34 @@ class LayoutContainer extends Component {
           breakpoint="sm"
           collapsed={false}
         >
-          <img src={logo} className="logo" alt="logo"/>
+          <img src={logo} className="logo" alt="logo" />
           <Menu
             theme="light"
             mode="inline"
-            defaultSelectedKeys={this.state.selectedKeys}
-            selectedKeys={this.state.selectedKeys}
+            defaultSelectedKeys={this.props.menuSelectKeys}
+            selectedKeys={this.props.menuSelectKeys}
             onClick={this.handleSelect.bind(this)}
           >
 
-            <Menu.Item key="index">
-              <Icon type="code-o" style={{ fontSize: 20 }}/>
+            <Menu.Item key="/">
+              <Icon type="code-o" style={{ fontSize: 20 }} />
               <span className="nav-text"><b>主页</b></span>
-              <Link to="/"/>
+              <Link to="/" />
             </Menu.Item>
             <Menu.Item key="formatting">
-              <Icon type="video-camera" style={{ fontSize: 20 }}/>
+              <Icon type="video-camera" style={{ fontSize: 20 }} />
               <span className="nav-text"><b>格式化</b></span>
-              <Link to="/formatting/"/>
+              <Link to="/formatting/" />
             </Menu.Item>
             <Menu.Item key="encryption">
-              <Icon type="upload" style={{ fontSize: 20 }}/>
+              <Icon type="upload" style={{ fontSize: 20 }} />
               <span className="nav-text"><b>加密</b></span>
-              <Link to="/encryption/"/>
+              <Link to="/encryption/" />
             </Menu.Item>
             <Menu.Item key="text_progressing">
-              <Icon type="user" style={{ fontSize: 20 }}/>
+              <Icon type="user" style={{ fontSize: 20 }} />
               <span className="nav-text"><b>文字处理</b></span>
-              <Link to="/text_progressing"/>
+              <Link to="/text_progressing" />
             </Menu.Item>
           </Menu>
         </Sider>
@@ -82,4 +76,18 @@ class LayoutContainer extends Component {
   }
 }
 
-export default withRouter(connect()(LayoutContainer));
+function mapStateToProps(state) {
+  return {
+    menuSelectKeys: state.layout.menuSelectKeys,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(layoutActions, dispatch),
+    dispatch,
+  };
+}
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(LayoutContainer));
