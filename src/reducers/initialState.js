@@ -14,4 +14,9 @@ export default {
   layout: {
     menuSelectKeys: [],
   },
+  settings: {
+    favourite: ['MD5', 'SHA', 'Json', 'Code'],
+    formatting: ['Json', 'Code'],
+    encryption: ['MD5', 'SHA'],
+  },
 };
