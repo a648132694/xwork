@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import LayoutContainer from '../Layouts/Layout';
-import MD5 from './MD5';
+import MD5 from '../../components/Encryption/MD5';
+import SHA from '../../components/Encryption/SHA';
 import * as encryptionActions from '../../actions/encryption';
 
 const { TabPane } = Tabs;
@@ -15,6 +16,18 @@ class EncryptionContainer extends Component {
   }
 
   render() {
+    // 字符串形式动态引入组件
+    const containersList = {
+      MD5,
+      SHA,
+    };
+    const tabContents = this.props.settings.encryption.map((item, key) => {
+      const ComponentName = containersList[item];
+      return (
+        <TabPane tab={item} key={key}>
+          <ComponentName encryption={this.props.encryption} actions={this.props.actions} />
+        </TabPane>);
+    });
     return (
       <div>
         <LayoutContainer>
@@ -30,10 +43,7 @@ class EncryptionContainer extends Component {
               tabPosition="left"
               onTabClick={this.saveTabPosition.bind(this)}
             >
-              <TabPane tab="MD5" key="1"><MD5 /></TabPane>
-              <TabPane tab="SHA1" key="2">Content of tab 2</TabPane>
-              <TabPane tab="XIAN" key="3">Content of tab 3</TabPane>
-              <TabPane tab="AES" key="4">Content of tab 4</TabPane>
+              {tabContents}
             </Tabs>
           </Card>
         </LayoutContainer>
@@ -45,6 +55,8 @@ class EncryptionContainer extends Component {
 function mapStateToProps(state) {
   return {
     tabPosition: state.encryption.tabPosition,
+    settings: state.settings,
+    encryption: state.encryption,
   };
 }
 

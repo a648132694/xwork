@@ -1,7 +1,7 @@
 import initialState from '../reducers/initialState';
 import * as types from '../constants/encryption';
 
-export default function(state = initialState.encryption, action) {
+export default function (state = initialState.encryption, action) {
   switch (action.type) {
     case types.SAVE_MD5_ENCRYPTION_INPUT:
       return {

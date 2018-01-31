@@ -1,8 +1,8 @@
-import * as type from '../constants/encryption';
+import * as types from '../constants/encryption';
 
 export function saveMD5Input(input) {
   return {
-    type: type.SAVE_MD5_ENCRYPTION_INPUT,
+    type: types.SAVE_MD5_ENCRYPTION_INPUT,
     payload: {
       MD5Input: input,
     },
@@ -17,7 +17,7 @@ export function handleSaveMD5Input(input) {
 
 export function saveMD5Result(result) {
   return {
-    type: type.SAVE_MD5_ENCRYPTION_RESULT,
+    type: types.SAVE_MD5_ENCRYPTION_RESULT,
     payload: {
       MD5Result: result,
     },
@@ -32,7 +32,7 @@ export function handleSaveMD5Result(result) {
 
 export function saveTabPosition(key) {
   return {
-    type: type.SAVE_TAB_POSITION,
+    type: types.SAVE_TAB_POSITION,
     payload: {
       tabPosition: key,
     },

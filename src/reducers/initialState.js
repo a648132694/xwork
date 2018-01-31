@@ -9,7 +9,7 @@ export default {
       input: '',
       result: '',
     },
-    tabPosition: 1,
+    tabPosition: '1',
   },
   layout: {
     menuSelectKeys: [],
