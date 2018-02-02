@@ -1,13 +1,39 @@
 import React, { Component } from 'react';
 import { Tabs, Card } from 'antd';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import LayoutContainer from '../Layouts/Layout';
-import MD5 from './MD5';
+import MD5 from '../../components/Encryption/MD5';
+import SHA from '../../components/Encryption/SHA';
+import * as encryptionActions from '../../actions/encryption';
+import * as helper from '../../utils/helper';
 
 const { TabPane } = Tabs;
 
 class EncryptionContainer extends Component {
+  saveTabPosition(key) {
+    this.props.actions.handleSaveTabPosition(key);
+  }
+
   render() {
+    // 字符串形式动态引入组件
+    const containersList = {
+      MD5,
+      SHA,
+    };
+    const { children } = this.props.encryptionFunctions;
+    const tabContents = children.map((item) => {
+      if (item.status) {
+        const ComponentName = containersList[item.name];
+        return (
+          <TabPane tab={item.name} key={item.name}>
+            <ComponentName encryption={this.props.encryption} actions={this.props.actions} />
+          </TabPane>
+        );
+      }
+      return null;
+    });
     return (
       <div>
         <LayoutContainer>
@@ -17,11 +43,13 @@ class EncryptionContainer extends Component {
             bodyStyle={{ padding: '15px 15px 15px 0' }}
             style={{ width: '100%' }}
           >
-            <Tabs tabPosition="left">
-              <TabPane tab="MD5" key="1"><MD5 /></TabPane>
-              <TabPane tab="SHA1" key="2">Content of tab 2</TabPane>
-              <TabPane tab="XIAN" key="3">Content of tab 3</TabPane>
-              <TabPane tab="AES" key="4">Content of tab 4</TabPane>
+            <Tabs
+              defaultActiveKey={this.props.tabPosition}
+              activeKey={this.props.tabPosition}
+              tabPosition="left"
+              onTabClick={this.saveTabPosition.bind(this)}
+            >
+              {tabContents}
             </Tabs>
           </Card>
         </LayoutContainer>
@@ -30,4 +58,22 @@ class EncryptionContainer extends Component {
   }
 }
 
-export default withRouter(EncryptionContainer);
+function mapStateToProps(state) {
+  // 获取属于encryption的属性
+  const encryptionFunctions = helper.getArrayObjectByObjectKey(state.settings.functions, 'encryption');
+  return {
+    tabPosition: state.encryption.tabPosition,
+    settings: state.settings,
+    encryption: state.encryption,
+    encryptionFunctions,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(encryptionActions, dispatch),
+  };
+}
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(EncryptionContainer));

@@ -19,6 +19,11 @@ export default function (state = initialState.encryption, action) {
           result: action.payload.MD5Result,
         },
       };
+    case types.SAVE_TAB_POSITION:
+      return {
+        ...state,
+        tabPosition: action.payload.tabPosition,
+      };
     default:
       return state;
   }
