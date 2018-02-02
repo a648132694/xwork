@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LayoutContainer from '../Layouts/Layout';
 
-export default class Index extends Component {
+export default class FavouriteContainer extends Component {
   render() {
     return (
       <LayoutContainer>

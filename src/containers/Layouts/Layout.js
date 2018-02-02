@@ -21,8 +21,7 @@ class LayoutContainer extends Component {
   setSelectItem() {
     const key = this.props.menuSelectKeys;
     let path = `/${key}/`;
-    if (this.props.menuSelectKeys[0] === '/'
-      || this.props.menuSelectKeys.length === 0) {
+    if (this.props.menuSelectKeys.length === 0) {
       path = '/';
     }
     this.props.history.push(path);
@@ -38,6 +37,17 @@ class LayoutContainer extends Component {
     const childrenWithProps = React.Children.map(children,
       child => React.cloneElement(child, { settings: this.props.settings }));
 
+    // Menu项
+    const menuItems = this.props.settings.functions.map((item) => {
+      return item.status ?
+        (
+          <Menu.Item key={item.key}>
+            <Icon type={item.iconType} style={{ fontSize: 15 }} />
+            <span className="nav-text"><b style={{ fontSize: 15 }}>{item.name}</b></span>
+            <Link to={`/${item.key}`} />
+          </Menu.Item>
+        ) : null;
+    });
     return (
       <Layout className="layout">
         <Sider
@@ -53,32 +63,7 @@ class LayoutContainer extends Component {
             selectedKeys={this.props.menuSelectKeys}
             onClick={this.handleSelect.bind(this)}
           >
-
-            <Menu.Item key="/">
-              <Icon type="code-o" style={{ fontSize: 15 }} />
-              <span className="nav-text"><b>主页</b></span>
-              <Link to="/" />
-            </Menu.Item>
-            <Menu.Item key="formatting">
-              <Icon type="video-camera" style={{ fontSize: 15 }} />
-              <span className="nav-text"><b>格式化</b></span>
-              <Link to="/formatting/" />
-            </Menu.Item>
-            <Menu.Item key="encryption">
-              <Icon type="upload" style={{ fontSize: 15 }} />
-              <span className="nav-text"><b>加密</b></span>
-              <Link to="/encryption/" />
-            </Menu.Item>
-            <Menu.Item key="text_progressing">
-              <Icon type="user" style={{ fontSize: 15 }} />
-              <span className="nav-text"><b>文字处理</b></span>
-              <Link to="/text_progressing" />
-            </Menu.Item>
-            <Menu.Item key="settings">
-              <Icon type="setting" style={{ fontSize: 15 }} />
-              <span className="nav-text"><b>设置</b></span>
-              <Link to="/settings" />
-            </Menu.Item>
+            {menuItems}
           </Menu>
         </Sider>
         <Layout>

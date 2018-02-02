@@ -28,6 +28,11 @@ html{
   max-height: 480px;
 }
 
+/*隐藏滚轮*/
+::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

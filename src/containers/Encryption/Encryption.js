@@ -7,6 +7,7 @@ import LayoutContainer from '../Layouts/Layout';
 import MD5 from '../../components/Encryption/MD5';
 import SHA from '../../components/Encryption/SHA';
 import * as encryptionActions from '../../actions/encryption';
+import * as helper from '../../utils/helper';
 
 const { TabPane } = Tabs;
 
@@ -21,12 +22,17 @@ class EncryptionContainer extends Component {
       MD5,
       SHA,
     };
-    const tabContents = this.props.settings.encryption.map((item, key) => {
-      const ComponentName = containersList[item];
-      return (
-        <TabPane tab={item} key={key}>
-          <ComponentName encryption={this.props.encryption} actions={this.props.actions} />
-        </TabPane>);
+    const { children } = this.props.encryptionFunctions;
+    const tabContents = children.map((item) => {
+      if (item.status) {
+        const ComponentName = containersList[item.name];
+        return (
+          <TabPane tab={item.name} key={item.name}>
+            <ComponentName encryption={this.props.encryption} actions={this.props.actions} />
+          </TabPane>
+        );
+      }
+      return null;
     });
     return (
       <div>
@@ -53,10 +59,13 @@ class EncryptionContainer extends Component {
 }
 
 function mapStateToProps(state) {
+  // 获取属于encryption的属性
+  const encryptionFunctions = helper.getArrayObjectByObjectKey(state.settings.functions, 'encryption');
   return {
     tabPosition: state.encryption.tabPosition,
     settings: state.settings,
     encryption: state.encryption,
+    encryptionFunctions,
   };
 }
 
