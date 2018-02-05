@@ -23,8 +23,6 @@ export default {
         status: true,
         canSwitch: true,
         children: [
-          { name: 'JSON', status: true },
-          { name: 'SHA', status: true },
         ],
       },
       {
@@ -69,10 +67,6 @@ export default {
         children: [
           { name: '功能模块', status: true },
           { name: '测试项目', status: true },
-          { name: 'MD5', status: true },
-          { name: 'SHA', status: true },
-          { name: 'MD5', status: true },
-          { name: 'SHA', status: true },
         ],
       },
     ],
