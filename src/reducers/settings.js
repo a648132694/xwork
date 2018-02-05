@@ -37,7 +37,6 @@ function changeParentStatus(object) {
     }
     flag = false;
   }
-  if (object.key === 'favourite')flag = true;
   object.status = !!flag;
   return object;
 }
