@@ -16,17 +16,15 @@ export default {
   },
   settings: {
     functions: [
-      {
-        name: '收藏项',
-        key: 'favourite',
-        iconType: 'code-o',
-        status: true,
-        canSwitch: true,
-        children: [
-          { name: 'JSON', status: true },
-          { name: 'SHA', status: true },
-        ],
-      },
+      // {
+      //   name: '收藏项',
+      //   key: 'favourite',
+      //   iconType: 'code-o',
+      //   status: true,
+      //   canSwitch: true,
+      //   children: [
+      //   ],
+      // },
       {
         name: '加密',
         key: 'encryption',
@@ -60,21 +58,17 @@ export default {
           { name: 'SHA', status: true },
         ],
       },
-      {
-        name: '设置',
-        key: 'settings',
-        iconType: 'setting',
-        status: true,
-        canSwitch: false,
-        children: [
-          { name: '功能模块', status: true },
-          { name: '测试项目', status: true },
-          { name: 'MD5', status: true },
-          { name: 'SHA', status: true },
-          { name: 'MD5', status: true },
-          { name: 'SHA', status: true },
-        ],
-      },
+      // {
+      //   name: '设置',
+      //   key: 'settings',
+      //   iconType: 'setting',
+      //   status: true,
+      //   canSwitch: false,
+      //   children: [
+      //     { name: '功能模块', status: true },
+      //     { name: '测试项目', status: true },
+      //   ],
+      // },
     ],
   },
 };

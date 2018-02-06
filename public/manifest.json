@@ -6,6 +6,10 @@
     "default_popup": "index.html",
     "default_title": "React Ext"
   },
+  "background": {
+    "persistent": true,
+    "scripts": ["background.js"]
+  },
   "version": "1.0",
   "permissions": [
     "storage"

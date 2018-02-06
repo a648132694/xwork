@@ -63,7 +63,17 @@ class LayoutContainer extends Component {
             selectedKeys={this.props.menuSelectKeys}
             onClick={this.handleSelect.bind(this)}
           >
+            <Menu.Item key="favourite">
+              <Icon type="setting" style={{ fontSize: 15 }} />
+              <span className="nav-text"><b style={{ fontSize: 15 }}>收藏项目</b></span>
+              <Link to="/favourite" />
+            </Menu.Item>
             {menuItems}
+            <Menu.Item key="settings">
+              <Icon type="setting" style={{ fontSize: 15 }} />
+              <span className="nav-text"><b style={{ fontSize: 15 }}>设置</b></span>
+              <Link to="/settings" />
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout>

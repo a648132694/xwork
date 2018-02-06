@@ -22,7 +22,7 @@ export default function (state = initialState.settings, action) {
 
 /**
  *
- *检查子项目是不是所有 status 都为false，是的话同时也要将父项目的 status 设为 false
+ *检查子项目是不是所有 status 都为false，是的话同时也要将父项目的 status 设为 false,favourite项除外
  *如果子项目有一项或以上的 status 为 true，父项目则要设置为 true
  * @param {object} object
  * @returns {object} object

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {
   HashRouter as Router,
   Route,
+  Switch,
 } from 'react-router-dom';
 import './App.css';
 import EncryptionContainer from './containers/Encryption/Encryption';
@@ -17,12 +18,14 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path="/" component={FavouriteContainer} />
-          <Route exact path="/favourite" component={FavouriteContainer} />
-          <Route exact path="/encryption/" component={EncryptionContainer} />
-          <Route exact path="/formatting/" component={FormattingContainer} />
-          <Route exact path="/text_progressing/" component={TextProgressing} />
-          <Route exact path="/settings/" component={SettingsContainer} />
+          <Switch>
+            <Route exact path="/" component={FavouriteContainer} />
+            <Route exact path="/favourite" component={FavouriteContainer} />
+            <Route exact path="/encryption/" component={EncryptionContainer} />
+            <Route exact path="/formatting/" component={FormattingContainer} />
+            <Route exact path="/text_progressing/" component={TextProgressing} />
+            <Route exact path="/settings/" component={SettingsContainer} />
+          </Switch>
         </div>
       </Router>
     );
