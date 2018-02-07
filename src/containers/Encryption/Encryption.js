@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import LayoutContainer from '../Layouts/Layout';
-import MD5 from '../../components/Encryption/MD5';
+import MD5Container from './MD5';
 import SHA from '../../components/Encryption/SHA';
 import * as encryptionActions from '../../actions/encryption';
 import * as helper from '../../utils/helper';
@@ -19,7 +19,7 @@ class EncryptionContainer extends Component {
   render() {
     // 字符串形式动态引入组件
     const containersList = {
-      MD5,
+      MD5: MD5Container,
       SHA,
     };
     const { children } = this.props.encryptionFunctions;
