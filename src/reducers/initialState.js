@@ -3,6 +3,7 @@ export default {
     MD5: {
       input: '',
       result: 'not result.',
+      history: [],
     },
     SHA: {
       iconType: 'SHA1',

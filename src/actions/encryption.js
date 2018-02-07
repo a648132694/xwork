@@ -24,6 +24,20 @@ export function saveMD5Result(result) {
   };
 }
 
+export function saveMD5RecordToHistory(input, result) {
+  const record = { input, result };
+  return {
+    type: types.SAVE_MD5_RECORD_TO_HISTORY,
+    payload: { record },
+  };
+}
+
+export function handleSaveMD5RecordToHistory(input, result) {
+  return (dispatch) => {
+    dispatch(saveMD5RecordToHistory(input, result));
+  };
+}
+
 export function handleSaveMD5Result(result) {
   return (dispatch) => {
     dispatch(saveMD5Result(result));

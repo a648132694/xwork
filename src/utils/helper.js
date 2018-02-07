@@ -6,3 +6,17 @@ export function getArrayObjectByObjectKey(array, objectKey) {
     }
   }
 }
+
+/**
+ * 检查是否需要存进历史记录
+ *
+ * @export
+ * @param {string} input
+ * @param {array} history
+ */
+export function checkNeedSaveToHistory(input, history) {
+  if (history.length !== 0) {
+    return input !== history[0].input;
+  }
+  return true;
+}

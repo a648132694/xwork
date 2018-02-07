@@ -24,6 +24,11 @@ export default function (state = initialState.encryption, action) {
         ...state,
         tabPosition: action.payload.tabPosition,
       };
+    case types.SAVE_MD5_RECORD_TO_HISTORY:
+      state.MD5.history.unshift(action.payload.record);
+      return {
+        ...state,
+      };
     default:
       return state;
   }
