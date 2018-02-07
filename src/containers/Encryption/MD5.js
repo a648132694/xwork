@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Input, Button, Alert, Row, Col, message, Modal, List, Icon, Divider } from 'antd';
+import { Input, Button, Alert, Row, Col, Divider } from 'antd';
 import utils from 'utility';
-import copy from 'copy-to-clipboard';
 import * as helper from '../../utils/helper';
+import HistoryButton from '../../components/HistoryButton/index';
+import ClipboardButton from '../../components/ClipboardButton/index';
 
 const { TextArea } = Input;
 
 class MD5Container extends Component {
-  state = { visible: false };
   handleTextAreaValueChange = (e) => {
     const input = e.target.value;
     this.props.actions.handleSaveMD5Input(input);
@@ -21,27 +21,10 @@ class MD5Container extends Component {
     this.props.actions.saveMD5RecordToHistory(input, result);
   }
 
-  handleCopyToClipboard = () => {
-    if (copy(this.props.encryption.MD5.result)) {
-      message.success('已复制到剪贴板!');
-    }
-  }
-
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  }
-
-  handleCancel = () => {
-    this.setState({
-      visible: false,
-    });
-  }
-
   render() {
     const { encryption } = this.props;
     const data = encryption.MD5.history;
+
     return (
       <div>
         <div style={{ minHeight: 270 }}>
@@ -57,46 +40,10 @@ class MD5Container extends Component {
         <Divider />
         <Row style={{ marginTop: 15 }}>
           <Col span={8}>
-            <Button
-              icon="copy"
-              size="default"
-              onClick={this.handleCopyToClipboard}
-            >
-            复制结果
-            </Button>
+            <ClipboardButton text={encryption.MD5.result} />
           </Col>
           <Col span={8}>
-            <Button
-              icon="profile"
-              size="default"
-              onClick={this.showModal}
-            >
-            历史记录
-            </Button>
-            <Modal
-              width={568}
-              style={{ position: 'absolute', right: 16, top: 16 }}
-              bodyStyle={{ paddingTop: 0, minHeight: 393 }}
-              footer={null}
-              title="历史记录"
-              mask={false}
-              visible={this.state.visible}
-              onOk={this.handleOk}
-              onCancel={this.handleCancel}
-            >
-              <List
-                itemLayout="horizontal"
-                dataSource={data}
-                renderItem={item => (
-                  <List.Item>
-                    <List.Item.Meta
-                      title={`输入 : ${item.input}`}
-                      description={`结果 : ${item.result}`}
-                    />
-                  </List.Item>
-    )}
-              />
-            </Modal>
+            <HistoryButton data={data} />
           </Col>
           <Col span={8} />
         </Row>

@@ -1,4 +1,11 @@
-// 检查数组的值(对象)是否包含某个键
+/**
+ *检查数组的值(对象)是否包含某个键并获取
+ *
+ * @export
+ * @param {array} array
+ * @param {object} objectKey
+ * @returns
+ */
 export function getArrayObjectByObjectKey(array, objectKey) {
   for (const key in array) {
     if (array[key].key === objectKey) {

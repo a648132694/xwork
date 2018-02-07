@@ -1,0 +1,10 @@
+.custom-modal {
+    position: 'absolute';
+    right: 16px;
+    top: 16px;
+}
+
+.custom-modal-body {
+    padding-top: 0;
+    min-height: 393px;
+}
