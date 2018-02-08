@@ -7,6 +7,7 @@ import LayoutContainer from '../Layouts/Layout';
 import MD5Container from './MD5';
 import SHA from '../../components/Encryption/SHA';
 import * as encryptionActions from '../../actions/encryption';
+import * as settingsActions from '../../actions/settings';
 import * as helper from '../../utils/helper';
 
 const { TabPane } = Tabs;
@@ -28,7 +29,7 @@ class EncryptionContainer extends Component {
         const ComponentName = containersList[item.name];
         return (
           <TabPane tab={item.name} key={item.name}>
-            <ComponentName encryption={this.props.encryption} actions={this.props.actions} />
+            <ComponentName {...this.props} />
           </TabPane>
         );
       }
@@ -63,15 +64,16 @@ function mapStateToProps(state) {
   const encryptionFunctions = helper.getArrayObjectByObjectKey(state.settings.functions, 'encryption');
   return {
     tabPosition: state.encryption.tabPosition,
-    settings: state.settings,
     encryption: state.encryption,
     encryptionFunctions,
+    favouriteFunctions: state.settings.favouriteFunctions,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(encryptionActions, dispatch),
+    settingsActions: bindActionCreators(settingsActions, dispatch),
   };
 }
 

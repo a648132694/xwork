@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import * as types from '../constants/settings';
 import initialState from './initialState';
 
@@ -13,6 +14,17 @@ export default function (state = initialState.settings, action) {
       return {
         ...state,
         functions,
+      };
+    }
+    case types.SAVE_FAVOURITE_FUNCTION: {
+      const { functionName, isFavourite } = action.payload;
+      if (isFavourite) {
+        state.favouriteFunctions.unshift(functionName);
+      } else {
+        _.remove(state.favouriteFunctions, value => value === functionName);
+      }
+      return {
+        ...state,
       };
     }
     default:

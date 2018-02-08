@@ -16,6 +16,7 @@ export default {
     menuSelectKeys: [],
   },
   settings: {
+    favouriteFunctions: [],
     functions: [
       // {
       //   name: '收藏项',

@@ -28,3 +28,27 @@ export function handleSaveFunctionSwitchStatus(parentKey, childKey, check) {
     dispatch(saveFunctionSwitchStatus(parentKey, childKey, check));
   };
 }
+
+/**
+ * 保存喜爱情况
+ *
+ * @export
+ * @param {string} functionName
+ * @param {bool} isFavourite
+ * @returns
+ */
+export function saveFavouriteFunction(functionName, isFavourite) {
+  return {
+    type: types.SAVE_FAVOURITE_FUNCTION,
+    payload: {
+      functionName,
+      isFavourite,
+    },
+  };
+}
+
+export function handleSaveFavouriteFunction(functionName, isFavourite) {
+  return (dispatch) => {
+    dispatch(saveFavouriteFunction(functionName, isFavourite));
+  };
+}
