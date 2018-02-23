@@ -10,7 +10,7 @@ export function saveMenuSelectKeys(key) {
 }
 
 export function handleSaveMenuSelectKeys(key) {
-  return function(dispatch) {
+  return (dispatch) => {
     dispatch(saveMenuSelectKeys(key));
   };
 }

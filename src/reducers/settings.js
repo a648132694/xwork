@@ -49,6 +49,6 @@ function changeParentStatus(object) {
     }
     flag = false;
   }
-  object.status = !!flag;
-  return object;
+  // object.status = !!flag;
+  return { ...object, status: !!flag };
 }

@@ -5,10 +5,10 @@ import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import LayoutContainer from '../Layouts/Layout';
 import MD5Container from './MD5';
-import SHA from '../../components/Encryption/SHA';
 import * as encryptionActions from '../../actions/encryption';
 import * as settingsActions from '../../actions/settings';
 import * as helper from '../../utils/helper';
+import SHAContainer from './SHA';
 
 const { TabPane } = Tabs;
 
@@ -21,7 +21,7 @@ class EncryptionContainer extends Component {
     // 字符串形式动态引入组件
     const containersList = {
       MD5: MD5Container,
-      SHA,
+      SHA: SHAContainer,
     };
     const { children } = this.props.encryptionFunctions;
     const tabContents = children.map((item) => {
